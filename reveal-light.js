@@ -1,5 +1,5 @@
 (() => {
-  const revealSurface = document.querySelector('.cursor-reveal');
+  const revealSurface = document.querySelector('.background-stage');
 
   if (!revealSurface) {
     return;
@@ -52,25 +52,24 @@
   };
 
   const updateTargetFromEvent = (event) => {
-    const bounds = revealSurface.getBoundingClientRect();
-    state.targetX = Math.min(1, Math.max(0, (event.clientX - bounds.left) / bounds.width));
-    state.targetY = Math.min(1, Math.max(0, (event.clientY - bounds.top) / bounds.height));
+    state.targetX = Math.min(1, Math.max(0, event.clientX / window.innerWidth));
+    state.targetY = Math.min(1, Math.max(0, event.clientY / window.innerHeight));
   };
 
-  revealSurface.addEventListener('pointerenter', (event) => {
+  window.addEventListener('pointerenter', (event) => {
     updateTargetFromEvent(event);
     state.targetIntensity = 1;
     revealSurface.classList.add('is-active');
     requestTick();
   });
 
-  revealSurface.addEventListener('pointermove', (event) => {
+  window.addEventListener('pointermove', (event) => {
     updateTargetFromEvent(event);
     state.targetIntensity = 1;
     requestTick();
   });
 
-  revealSurface.addEventListener('pointerleave', () => {
+  window.addEventListener('pointerleave', () => {
     state.targetIntensity = 0;
     revealSurface.classList.remove('is-active');
     requestTick();
