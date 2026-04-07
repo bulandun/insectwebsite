@@ -28,13 +28,17 @@ body {
 .background-stage {
   --reveal-x: 50%;
   --reveal-y: 50%;
-  --core-size: 16%;
-  --halo-size: 40%;
+  --core-size: 15%;
+  --halo-size: 42%;
+  --edge-size: 62%;
   --reveal-strength: 0;
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
+  background:
+    radial-gradient(160% 100% at 50% -30%, rgb(25 37 47 / 30%), transparent 55%),
+    linear-gradient(148deg, #060a0d 0%, #0a1015 42%, #0d1419 100%);
 }
 
 .spectral-field,
@@ -86,18 +90,29 @@ body {
 
 .global-wing-reveal {
   background:
-    linear-gradient(122deg, rgb(189 218 236 / 17%), rgb(112 139 167 / 12%) 36%, rgb(250 196 132 / 14%) 62%, rgb(220 231 238 / 20%)),
+    linear-gradient(122deg, rgb(189 218 236 / 24%), rgb(112 139 167 / 17%) 36%, rgb(250 196 132 / 18%) 62%, rgb(220 231 238 / 24%)),
     url('assets/1.jpeg') center / cover no-repeat,
     url('assets/2.jpeg') center / cover no-repeat,
     url('assets/3.jpeg') center / cover no-repeat,
-    repeating-linear-gradient(114deg, transparent 0 30px, rgb(236 246 255 / 8%) 31px 32px),
-    repeating-linear-gradient(18deg, transparent 0 36px, rgb(165 196 220 / 6%) 37px 38px);
+    repeating-linear-gradient(114deg, transparent 0 30px, rgb(236 246 255 / 12%) 31px 32px),
+    repeating-linear-gradient(18deg, transparent 0 36px, rgb(165 196 220 / 11%) 37px 38px);
   background-blend-mode: screen, lighten, lighten, overlay, normal, normal;
-  filter: saturate(0.88) contrast(1.06);
-  opacity: 0.06;
-  mix-blend-mode: screen;
-  mask-image: radial-gradient(circle at var(--reveal-x) var(--reveal-y), black 0 var(--core-size), transparent var(--halo-size));
-  -webkit-mask-image: radial-gradient(circle at var(--reveal-x) var(--reveal-y), black 0 var(--core-size), transparent var(--halo-size));
+  filter: saturate(0.95) contrast(1.14);
+  opacity: 0.16;
+  mask-image: radial-gradient(
+    circle at var(--reveal-x) var(--reveal-y),
+    rgb(0 0 0 / 95%) 0%,
+    rgb(0 0 0 / 92%) var(--core-size),
+    rgb(0 0 0 / 48%) var(--halo-size),
+    transparent var(--edge-size)
+  );
+  -webkit-mask-image: radial-gradient(
+    circle at var(--reveal-x) var(--reveal-y),
+    rgb(0 0 0 / 95%) 0%,
+    rgb(0 0 0 / 92%) var(--core-size),
+    rgb(0 0 0 / 48%) var(--halo-size),
+    transparent var(--edge-size)
+  );
   transition: opacity 320ms ease;
 }
 
@@ -117,15 +132,15 @@ body {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at var(--reveal-x) var(--reveal-y), rgb(218 232 242 / 14%), transparent var(--core-size)),
-    radial-gradient(circle at var(--reveal-x) var(--reveal-y), rgb(171 202 226 / 10%), transparent var(--halo-size)),
-    radial-gradient(circle at var(--reveal-x) var(--reveal-y), rgb(255 191 128 / 8%), transparent calc(var(--halo-size) + 12%));
-  opacity: calc(var(--reveal-strength) * 0.7);
-  mix-blend-mode: screen;
+    radial-gradient(circle at var(--reveal-x) var(--reveal-y), rgb(218 232 242 / 35%), transparent var(--core-size)),
+    radial-gradient(circle at var(--reveal-x) var(--reveal-y), rgb(171 202 226 / 26%), transparent var(--halo-size)),
+    radial-gradient(circle at var(--reveal-x) var(--reveal-y), rgb(255 191 128 / 18%), transparent calc(var(--halo-size) + 16%));
+  opacity: calc(var(--reveal-strength) * 0.88);
+  mix-blend-mode: plus-lighter;
 }
 
 .background-stage.is-active .global-wing-reveal {
-  opacity: calc(0.06 + var(--reveal-strength) * 0.46);
+  opacity: calc(0.22 + var(--reveal-strength) * 0.62);
 }
 
 .site-header,
