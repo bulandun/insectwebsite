@@ -93,7 +93,7 @@ body {
     linear-gradient(122deg, rgb(189 218 236 / 24%), rgb(112 139 167 / 17%) 36%, rgb(250 196 132 / 18%) 62%, rgb(220 231 238 / 24%)),
     url('assets/1.jpeg') center / cover no-repeat,
     url('assets/2.jpeg') center / cover no-repeat,
-    url('assets/3.jpeg') center / cover no-repeat,
+    url('assets/5.jpeg') center / cover no-repeat,
     repeating-linear-gradient(114deg, transparent 0 30px, rgb(236 246 255 / 12%) 31px 32px),
     repeating-linear-gradient(18deg, transparent 0 36px, rgb(165 196 220 / 11%) 37px 38px);
   background-blend-mode: screen, lighten, lighten, overlay, normal, normal;
