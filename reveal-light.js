@@ -19,6 +19,10 @@
     targetIntensity: 0,
     rafId: 0,
   };
+  const config = {
+    lagFactor: 0.14,
+    fadeFactor: 0.11,
+  };
 
   const positionToCss = () => {
     revealSurface.style.setProperty('--reveal-x', `${(state.currentX * 100).toFixed(2)}%`);
@@ -28,12 +32,9 @@
 
   const animate = () => {
     // Higher lagFactor = less lag, lower lagFactor = more trailing.
-    const lagFactor = 0.12;
-    const fadeFactor = 0.09;
-
-    state.currentX += (state.targetX - state.currentX) * lagFactor;
-    state.currentY += (state.targetY - state.currentY) * lagFactor;
-    state.intensity += (state.targetIntensity - state.intensity) * fadeFactor;
+    state.currentX += (state.targetX - state.currentX) * config.lagFactor;
+    state.currentY += (state.targetY - state.currentY) * config.lagFactor;
+    state.intensity += (state.targetIntensity - state.intensity) * config.fadeFactor;
 
     positionToCss();
 
@@ -71,9 +72,14 @@
 
   window.addEventListener('pointerleave', () => {
     state.targetIntensity = 0;
-    revealSurface.classList.remove('is-active');
     requestTick();
   });
 
+  window.addEventListener('blur', () => {
+    state.targetIntensity = 0;
+    requestTick();
+  });
+
+  revealSurface.classList.add('is-active');
   positionToCss();
 })();
