@@ -83,3 +83,56 @@
   revealSurface.classList.add('is-active');
   positionToCss();
 })();
+
+
+(() => {
+  const panels = document.querySelectorAll('.panel');
+
+  if (!panels.length) {
+    return;
+  }
+
+  const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+  const resetPanel = (panel) => {
+    panel.style.setProperty('--mx', '50%');
+    panel.style.setProperty('--my', '50%');
+    panel.style.setProperty('--tilt-x', '0deg');
+    panel.style.setProperty('--tilt-y', '0deg');
+    panel.style.setProperty('--hover-strength', '0');
+  };
+
+  panels.forEach((panel) => {
+    resetPanel(panel);
+
+    if (!canHover) {
+      return;
+    }
+
+    panel.addEventListener('pointermove', (event) => {
+      const rect = panel.getBoundingClientRect();
+      const x = clamp((event.clientX - rect.left) / rect.width, 0, 1);
+      const y = clamp((event.clientY - rect.top) / rect.height, 0, 1);
+
+      panel.style.setProperty('--mx', `${(x * 100).toFixed(2)}%`);
+      panel.style.setProperty('--my', `${(y * 100).toFixed(2)}%`);
+      panel.style.setProperty('--tilt-y', `${((x - 0.5) * 2.3).toFixed(3)}deg`);
+      panel.style.setProperty('--tilt-x', `${((0.5 - y) * 1.8).toFixed(3)}deg`);
+      panel.style.setProperty('--hover-strength', '1');
+    });
+
+    panel.addEventListener('pointerenter', () => {
+      panel.style.setProperty('--hover-strength', '1');
+    });
+
+    panel.addEventListener('pointerleave', () => {
+      panel.style.setProperty('--hover-strength', '0');
+      panel.style.setProperty('--tilt-x', '0deg');
+      panel.style.setProperty('--tilt-y', '0deg');
+      panel.style.setProperty('--mx', '50%');
+      panel.style.setProperty('--my', '50%');
+    });
+  });
+})();
