@@ -20,8 +20,8 @@
     rafId: 0,
   };
   const config = {
-    lagFactor: 0.14,
-    fadeFactor: 0.11,
+    lagFactor: 0.105,
+    fadeFactor: 0.095,
   };
 
   const positionToCss = () => {
