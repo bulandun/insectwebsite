@@ -28,9 +28,9 @@ body {
 .background-stage {
   --reveal-x: 50%;
   --reveal-y: 50%;
-  --core-size: 12.75%;
-  --halo-size: 35.7%;
-  --edge-size: 52.7%;
+  --core-size: 10.2%;
+  --halo-size: 28.56%;
+  --edge-size: 42.16%;
   --reveal-strength: 0;
   position: fixed;
   inset: 0;
@@ -134,7 +134,7 @@ body {
   background:
     radial-gradient(circle at var(--reveal-x) var(--reveal-y), rgb(218 232 242 / 35%), transparent var(--core-size)),
     radial-gradient(circle at var(--reveal-x) var(--reveal-y), rgb(171 202 226 / 26%), transparent var(--halo-size)),
-    radial-gradient(circle at var(--reveal-x) var(--reveal-y), rgb(255 191 128 / 18%), transparent calc(var(--halo-size) + 16%));
+    radial-gradient(circle at var(--reveal-x) var(--reveal-y), rgb(255 191 128 / 18%), transparent calc(var(--halo-size) + 12.8%));
   opacity: calc(var(--reveal-strength) * 0.88);
   mix-blend-mode: plus-lighter;
 }
