@@ -28,9 +28,9 @@ body {
 .background-stage {
   --reveal-x: 50%;
   --reveal-y: 50%;
-  --core-size: 15%;
-  --halo-size: 42%;
-  --edge-size: 62%;
+  --core-size: 12.75%;
+  --halo-size: 35.7%;
+  --edge-size: 52.7%;
   --reveal-strength: 0;
   position: fixed;
   inset: 0;
